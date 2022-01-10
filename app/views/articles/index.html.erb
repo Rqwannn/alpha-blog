@@ -1,0 +1,32 @@
+<h1 style="padding: 15px;"> <strong>Articles</strong> </h1>
+
+<table>
+
+    <thead>
+        <tr>
+            <th style="padding: 15px;">Number</th>
+            <th style="padding: 15px;">Title</th>
+            <th style="padding: 15px;">Description</th>
+            <th style="padding: 15px;">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% number = 0%>
+
+        <% @articles.each do |result| %>
+            <tr>
+                <td style="text-align:center; padding: 10px;"><%= number += 1 %></td>
+                <td style="text-align:center; padding: 10px;"><%= result.title %></td>
+                <td style="text-align:center; padding: 10px;"><%= result.description %></td>
+                <td style="text-align:center; padding: 10px; display: flex;">
+                    <a href="" style="cursor: pointer; text-decoration: none; color: black;">Edit</a>
+                    <a href="" style="padding: 0 10px; cursor: pointer; text-decoration: none; color: black;">Hapus</a>
+                    <a href="" style="cursor: pointer; text-decoration: none; color: black;">Detail</a>
+                </td>
+            </tr>
+        <% end %>
+    
+        </tbody>
+
+</table>
