@@ -1,0 +1,32 @@
+<% if @article.errors.any? %>
+
+    <h2>The Following Errors</h2>
+
+    <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+
+<% end %>
+
+<%= form_with(model: @article, local: true) do |value| %>
+
+    <div>
+        <p style="padding: 5px 0 0 15px;">
+            <%= value.label :title %>
+        </p>
+        <%= value.text_field :title, style:' margin-left: 15px', placeholder: 'Masukan Title', class: 'title' %>
+    </div>
+
+    <div>
+         <p style="padding: 5px 0 0 15px;">
+            <%= value.label :description %>
+        </p>
+        <%= value.text_area :description, style: 'margin-left: 15px', placeholder: 'Masukan Description', class: 'description' %>
+    </div>
+
+    <div style="margin: 15px 0 0 15px;">
+        <%= value.submit 'Create Article' %>
+    </div>
+<% end %>

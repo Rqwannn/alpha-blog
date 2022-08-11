@@ -1,6 +1,6 @@
 <h1 style="padding: 15px;"> <strong>Articles</strong> </h1>
 
-<table>
+<table style="margin-bottom: 20px;">
 
     <thead>
         <tr>
@@ -20,9 +20,9 @@
                 <td style="text-align:center; padding: 10px;"><%= result.title %></td>
                 <td style="text-align:center; padding: 10px;"><%= result.description %></td>
                 <td style="text-align:center; padding: 10px; display: flex;">
-                    <a href="" style="cursor: pointer; text-decoration: none; color: black;">Edit</a>
-                    <a href="" style="padding: 0 10px; cursor: pointer; text-decoration: none; color: black;">Hapus</a>
-                    <a href="" style="cursor: pointer; text-decoration: none; color: black;">Detail</a>
+                    <%= link_to "Edit", edit_article_path(result), class: "btn-link" ,style: "cursor: pointer; text-decoration: none; color: black;" %>
+                    <%= link_to "Delete", result, class: "btn-link" ,data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }, style: "margin: 0 7px 0 7px ;cursor: pointer; text-decoration: none; color: black;" %>
+                    <%= link_to "Detail", article_path(result.id), class: "btn-link" ,style: "cursor: pointer; text-decoration: none; color: black;" %>
                 </td>
             </tr>
         <% end %>
@@ -30,3 +30,5 @@
         </tbody>
 
 </table>
+
+ <%= link_to "Create Article", new_article_path, style: "cursor: pointer; text-decoration: none; color: black; margin-left: 15px;" %>
