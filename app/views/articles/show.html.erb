@@ -1,8 +1,14 @@
 
+<div class="container my-5">
+    <h1>Title: <%= @article.title %></h1>
+    <h1>Description: <%= @article.description %></h1>
 
-<h1>Title: <%= @article.title %></h1>
-<h1>Description: <%= @article.description %></h1>
-
-<%= link_to "Edit", edit_article_path(@article.id), style: "cursor: pointer; text-decoration: none; color: black;" %>
-<%= link_to "Delete", @article, class: "btn-link" ,data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }, style: "margin: 0 7px 0 7px ;cursor: pointer; text-decoration: none; color: black;" %>
-<%= link_to "Return To List Articles", articles_path, style: "margin-left: 15px;" %>
+    <div class="d-flex align-items-center mt-4">
+        <input type="hidden" value="<%= @article.id %>" class="id_data">
+        <%= link_to "Edit", edit_article_path(@article.id), class: "btn btn-success", style: "cursor: pointer;" %>
+        <%= button_to "Delete this article", article_path(@article), method: :delete, 
+                                        form: { data: { turbo_confirm: "Are you sure you want to delete this article?" } }, 
+                                        class: "btn btn-xs btn-danger confirm", style: "margin-left: 15px;" %>
+        <%= link_to "Return To List Articles", articles_path, style: "margin-left: 15px;" %>
+    </div>
+</div>

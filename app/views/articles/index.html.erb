@@ -1,34 +1,44 @@
-<h1 style="padding: 15px;"> <strong>Articles</strong> </h1>
+<div class="container my-5">
+    <h1> <strong>Articles</strong> </h1>
 
-<table style="margin-bottom: 20px;">
+    <!-- 
+        kaya php
 
-    <thead>
-        <tr>
-            <th style="padding: 15px;">Number</th>
-            <th style="padding: 15px;">Title</th>
-            <th style="padding: 15px;">Description</th>
-            <th style="padding: 15px;">Action</th>
-        </tr>
-    </thead>
+        <% test = "testing" %> 
+        <h2> <%= test %> </h2>
+    -->
 
-    <tbody>
-        <% number = 0%>
+    <div class="row">
 
         <% @articles.each do |result| %>
-            <tr>
-                <td style="text-align:center; padding: 10px;"><%= number += 1 %></td>
-                <td style="text-align:center; padding: 10px;"><%= result.title %></td>
-                <td style="text-align:center; padding: 10px;"><%= result.description %></td>
-                <td style="text-align:center; padding: 10px; display: flex;">
-                    <%= link_to "Edit", edit_article_path(result), class: "btn-link" ,style: "cursor: pointer; text-decoration: none; color: black;" %>
-                    <%= link_to "Delete", result, class: "btn-link" ,data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }, style: "margin: 0 7px 0 7px ;cursor: pointer; text-decoration: none; color: black;" %>
-                    <%= link_to "Detail", article_path(result.id), class: "btn-link" ,style: "cursor: pointer; text-decoration: none; color: black;" %>
-                </td>
-            </tr>
+
+            <div class="col-md-6">
+                <div class="card shadow text-center my-4">
+                    <h5 class="card-header text-center font-weight-bold">
+                        Featured
+                    </h5>
+                    <div class="card-body">
+                        <h5 class="card-title text-success"><%= result.title %></h5>
+                        <!-- Fungsi truncate jika text kepanjangan maka akan di akhiri dengan ... -->
+                        <p class="card-text"><%= truncate(result.description, length: 50) %></p>
+                        <div class="d-flex justify-content-center">
+                            <%= link_to "Detail", article_path(result.id), class: "btn btn-outline-primary" ,style: "cursor: pointer;" %>
+                            <%= link_to "Edit", edit_article_path(result), class: "btn btn-outline-success" ,style: "cursor: pointer; margin: 0 7px 0 7px ;" %>
+                            <!-- 
+                                <%= link_to "Delete", result, class: "btn btn-outline-danger", data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }, style: "cursor: pointer;" %>
+                            -->
+                            <%= link_to "Delete", result, class: "btn btn-outline-danger", data: { "turbo-method": :delete, "turbo_confirm": 'Are you sure?' }, style: "cursor: pointer;" %>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Created <%= time_ago_in_words(result.created_at) %> Ago, Updated <%= time_ago_in_words(result.updated_at) %> Ago 
+                    </div>
+                </div>
+            </div>
+
         <% end %>
-    
-        </tbody>
 
-</table>
+    </div>
 
- <%= link_to "Create Article", new_article_path, style: "cursor: pointer; text-decoration: none; color: black; margin-left: 15px;" %>
+    <%= link_to "Create Article", new_article_path, class: "btn btn-primary", style: "cursor: pointer;" %>
+</div>

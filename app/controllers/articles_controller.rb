@@ -1,3 +1,5 @@
+include ActionView::Helpers::DateHelper
+
 class ArticlesController < ApplicationController
 
   # agar method set_article bisa di gunakan di method yang di izinkan
@@ -6,6 +8,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   
   def show
+    # time_ago_in_words(@article.created_at) # include ActionView::Helpers::DateHelper taro di bagian atas agar berfungsi
     # @article = Article.find(params[:id]) => akan ada code seperti ini jika menggunakan before_action with method set_article
   end
 
@@ -48,7 +51,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
 
-    flash[:notice] = "Article was updated successfully"
+    flash[:notice] = "Article was delete successfully"
     redirect_to articles_path
   end
 
